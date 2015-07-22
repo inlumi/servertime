@@ -13,5 +13,27 @@ namespace servertime
         {
 
         }
+        static TimeSpan timeOffset = new TimeSpan(0, 0, 0);
+        static TimeSpan newHour = new TimeSpan(1, 0, 0);
+
+        [System.Web.Services.WebMethod]
+        public static string GetDate()
+        {
+            return (DateTime.Now + timeOffset).ToString("MM/dd/yy H:mm:ss");
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string PlusHour()
+        {
+            timeOffset += newHour;
+            return true.ToString();
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string MinusHour()
+        {
+            timeOffset -= newHour;
+            return true.ToString();
+        }
     }
 }
